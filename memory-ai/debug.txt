@@ -1,0 +1,83 @@
+{
+  "conflict": null,
+  "debug": {
+    "conflict": null,
+    "context_used": "Housa is a backend developer and loves Python. Flask is a Python backend framework.",
+    "decision": "No new information was provided in the user's message. The user is just stating a topic.",
+    "memory_retrieved": "Housa is a backend developer and loves Python. Flask is a Python backend framework.",
+    "semantic_context": "No semantic matches",
+    "stored_memory": {
+      "facts": [
+        {
+          "access_count": 0,
+          "content": "The user's name is Housa.",
+          "id": "abaafdf0",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Housa is a backend developer",
+          "id": "5022fd53",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Legal Doc Summary: Analyzed a legal document.",
+          "id": "7764718c",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        }
+      ],
+      "goals": [],
+      "preferences": [
+        {
+          "access_count": 0,
+          "content": "Loves Python",
+          "id": "2674b6aa",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Loves Java",
+          "id": "eecf9666",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Loves C++",
+          "id": "04a4e677",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Loves C",
+          "id": "b334fd81",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        },
+        {
+          "access_count": 0,
+          "content": "Loves JavaScript",
+          "id": "e6569055",
+          "importance": 0.5,
+          "source": "observed",
+          "timestamp": "2024-01-01T00:00:00Z"
+        }
+      ]
+    },
+    "vector_db_active": true
+  },
+  "reply": "Flask! Since you're a backend developer and love Python, that makes perfect sense. Are you working on a new project or just exploring some of its features?"
+}

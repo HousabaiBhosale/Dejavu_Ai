@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORY - AI | Intelligent Persistence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Graph Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.2/dist/vis-network.min.js"></script>
+</head>
+<body class="dark-mode">
+    
+    <!-- Auth Page -->
+    <div id="auth-page" class="page active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo-animation">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <h1>MEMORY - AI</h1>
+                    <p>Unlock your digital second brain</p>
+                </div>
+                <div class="auth-body">
+                    <div class="input-group">
+                        <label for="password">Security Password</label>
+                        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                        <p class="auth-error" id="auth-error">Incorrect password. Please try again.</p>
+                    </div>
+                    <button id="login-btn" class="btn-primary">
+                        <span>Access Dashboard</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Page -->
+    <div id="dashboard-page" class="page">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="mini-logo">M</div>
+                <span class="logo-text">MEMORY AI</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-section="chat"><i class="fas fa-comment-dots"></i><span>AI Chat</span></li>
+                <li data-section="legal"><i class="fas fa-file-contract"></i><span>Legal Analyzer</span></li>
+                <li data-section="memory"><i class="fas fa-brain"></i><span>Memory Manager</span></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i><span>Lock Vault</span></button>
+            </div>
+        </nav>
+
+        <main class="content">
+            <!-- Chat Section -->
+            <section id="chat-section" class="section active">
+                <div class="chat-layout">
+                    <div class="chat-main">
+                        <div class="chat-header">
+                            <div class="status-indicator"></div>
+                            <h2>Neural Dialogue</h2>
+                        </div>
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="msg bot">
+                                <div class="msg-content">Hello, I am Memory AI. I store facts, preferences, and goals from our conversations to serve you better. What's on your mind?</div>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <div id="voice-indicator" class="voice-indicator">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                                <span>Listening...</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <textarea id="user-input" placeholder="Message Memory AI..." rows="1"></textarea>
+                                <div class="action-buttons">
+                                    <button id="mic-btn" title="Voice Input"><i class="fas fa-microphone"></i></button>
+                                    <button id="send-btn" class="btn-send"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Debug Panel -->
+                    <aside class="debug-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-brain"></i> Agent Thinking</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="debug-item">
+                                <label>Memory Retrieved</label>
+                                <div id="debug-retrieved" class="debug-content empty">None</div>
+                            </div>
+                            <div class="debug-item">
+                                <label>Context Used</label>
+                                <div id="debug-context" class="debug-content empty">None</div>
+                            </div>
+                            <div class="debug-item">
+                                <label>Decision</label>
+                                <div id="debug-decision" class="debug-content empty">Waiting...</div>
+                            </div>
+                            <div class="debug-item" id="conflict-wrapper" style="display: none;">
+                                <label class="label-alert"><i class="fas fa-exclamation-triangle"></i> Conflict Detected</label>
+                                <div id="debug-conflict" class="debug-content alert"></div>
+                            </div>
+                            <div class="debug-item">
+                                <label>Stored Memory</label>
+                                <div id="debug-stored" class="debug-content json">{}</div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Legal Analyzer Section -->
+            <section id="legal-section" class="section">
+                <div class="legal-container">
+                    <div class="legal-header">
+                        <h2>Legal Document Analyzer</h2>
+                        <p>Upload contracts or paste legal text for neural risk assessment.</p>
+                    </div>
+                    <div class="legal-input-box">
+                        <textarea id="legal-text" placeholder="Paste legal text here... or upload a PDF below"></textarea>
+                        <div class="legal-actions">
+                            <label for="legal-file" class="btn-secondary">
+                                <i class="fas fa-file-pdf"></i> Upload PDF
+                                <input type="file" id="legal-file" accept=".pdf" style="display: none;">
+                            </label>
+                            <span id="file-name"></span>
+                            <button id="analyze-btn" class="btn-primary">Analyze Document</button>
+                        </div>
+                    </div>
+                    <div id="legal-results" class="legal-results" style="display: none;">
+                        <div class="result-card summary">
+                            <h3><i class="fas fa-align-left"></i> Summary</h3>
+                            <p id="legal-summary-text"></p>
+                        </div>
+                        <div class="result-grid">
+                            <div class="result-card risks">
+                                <h3><i class="fas fa-shield-virus"></i> Risks & Warnings</h3>
+                                <ul id="legal-risks-list"></ul>
+                            </div>
+                            <div class="result-card clauses">
+                                <h3><i class="fas fa-file-signature"></i> Key Clauses</h3>
+                                <div id="legal-clauses-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="legal-loader" class="loader-overlay" style="display: none;">
+                        <div class="spinner"></div>
+                        <span>Analyzing with Gemini...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Memory Manager Section -->
+            <section id="memory-section" class="section">
+                <div class="memory-manager-container">
+                    <div class="memory-header">
+                        <div>
+                            <h2>Memory Manager</h2>
+                            <p>Explore and manage your AI's internal knowledge base.</p>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="optimize-memory-btn" class="btn-secondary"><i class="fas fa-magic"></i> Optimize Brain</button>
+                            <a id="export-memory-btn" href="/api/memories/export" class="btn-primary" style="width: auto; padding: 10px 20px;"><i class="fas fa-download"></i> Export JSON</a>
+                        </div>
+                    </div>
+
+                    <div class="memory-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-database"></i>
+                            <span id="stat-total" class="val">0</span>
+                            <span class="lab">Total Memories</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-bolt"></i>
+                            <span id="stat-priority" class="val">0.0</span>
+                            <span class="lab">Avg Importance</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <span id="stat-freshness" class="val">High</span>
+                            <span class="lab">Sync Status</span>
+                        </div>
+                    </div>
+
+                    <div id="memory-graph"></div>
+
+                    <div class="memory-list-header" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                        <h3>All Stored Knowledge</h3>
+                        <div class="search-box" style="width: 300px;">
+                            <input type="text" id="memory-search" placeholder="Search semantically..." style="width: 100%; padding: 8px 15px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: white;">
+                        </div>
+                    </div>
+
+                    <div id="memory-list" class="memory-list-grid">
+                        <!-- Memories will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Continue Session Modal -->
+    <div id="session-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon"><i class="fas fa-history"></i></div>
+            <h3>Continue session?</h3>
+            <p>I found memories from your previous interaction. Would you like a recap before we continue?</p>
+            <div class="modal-actions">
+                <button id="session-no" class="btn-text">Start Fresh</button>
+                <button id="session-yes" class="btn-primary">Yes, Recap Please</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Alerts -->
+    <div id="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

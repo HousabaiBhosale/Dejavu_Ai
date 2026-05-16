@@ -1,0 +1,8 @@
+flask
+flask-cors
+google-genai
+python-dotenv
+PyPDF2
+mysql-connector-python
+chromadb
+sentence-transformers

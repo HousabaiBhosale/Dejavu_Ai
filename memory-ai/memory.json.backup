@@ -1,0 +1,71 @@
+{
+    "facts": [
+        {
+            "id": "abaafdf0",
+            "content": "The user's name is Housa.",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "5022fd53",
+            "content": "Housa is a backend developer",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "6fa2bff9",
+            "content": "Legal Doc Summary: Analyzed a legal document.",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        }
+    ],
+    "preferences": [
+        {
+            "id": "2674b6aa",
+            "content": "Loves Python",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "eecf9666",
+            "content": "Loves Java",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "04a4e677",
+            "content": "Loves C++",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "b334fd81",
+            "content": "Loves C",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        },
+        {
+            "id": "e6569055",
+            "content": "Loves JavaScript",
+            "importance": 0.5,
+            "timestamp": "2024-01-01T00:00:00Z",
+            "access_count": 0,
+            "source": "observed"
+        }
+    ],
+    "goals": []
+}
